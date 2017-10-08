@@ -7,10 +7,10 @@ export class Store<T> extends ReplaySubject<T> {
 
     constructor(initialState) {
         super();
-        this.state = initialState;
         this.subscribe((state: T) => {
             this.state = state
         });
+        this.next(initialState);
     }
 
     registerReducer(reducer: IReducer) {
