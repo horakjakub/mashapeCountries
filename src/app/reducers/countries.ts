@@ -2,10 +2,9 @@ import {ICountry} from "../models/country";
 import {IReducer} from "../models/reducer"
 import {Actions} from '../actions/actions';
 
-// -------------  add item  ------------- //
 
-export const ADD_ITEM: IReducer = {
-    action: Actions.Store.AddCountryToCollection,
+export const ADD_COUNTRY: IReducer = {
+    action: Actions.Store.AddCountry,
     reduce: addOneItemToCountriesCollection
 };
 

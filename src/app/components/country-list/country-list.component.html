@@ -1,0 +1,7 @@
+<div *ngIf="visible">
+    <ul>
+        <li *ngFor="let country of countries" (click)="changeRoute(country)">
+            {{ country.name }}
+        </li>
+    </ul>
+</div>

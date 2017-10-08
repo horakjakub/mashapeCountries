@@ -2,6 +2,12 @@ import {ILayout} from "../models/layout"
 import {IReducer} from "../models/reducer";
 import {Actions} from '../actions/actions';
 
+export const initialState: ILayout = {
+    actualViewURL: '',
+    countriesListVisible: false,
+    countryDetailsVisible: false
+};
+
 // -------------  change site  ------------- //
 
 export const CHANGE_ACTUAL_SITE: IReducer = {
@@ -11,7 +17,32 @@ export const CHANGE_ACTUAL_SITE: IReducer = {
 
 function changeCurrentSiteForNew(state: ILayout, payload: string): ILayout {
     const newState: ILayout = Object.assign({}, state);
-    newState.actualView = payload;
+    newState.actualViewURL = payload;
     return newState;
 }
 
+/* ----------- / COUNTRY_DETAILS_VISIBLE / --------------*/
+
+export const COUNTRY_DETAILS_VISIBLE: IReducer = {
+    action: Actions.Store.CountryDetailsVisible,
+    reduce: countryDetailsVisible
+};
+
+function countryDetailsVisible(state: ILayout, payload: boolean): ILayout {
+    const newState: ILayout = Object.assign({}, state);
+    newState.countryDetailsVisible = payload;
+    return newState;
+}
+
+/* ----------- / COUNTRIES_LIST_VISIBLE / --------------*/
+
+export const COUNTRIES_LIST_VISIBLE: IReducer = {
+    action: Actions.Store.CountriesListVisible,
+    reduce: countriesListVisible
+};
+
+function countriesListVisible(state: ILayout, payload: boolean): ILayout {
+    const newState: ILayout = Object.assign({}, state);
+    newState.countriesListVisible = payload;
+    return newState;
+}

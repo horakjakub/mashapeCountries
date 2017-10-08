@@ -1,3 +1,6 @@
 export interface ILayout {
-    actualView: string;
+    actualViewURL: string;
+
+    countriesListVisible: boolean;
+    countryDetailsVisible: boolean;
 }
