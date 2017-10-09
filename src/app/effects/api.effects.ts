@@ -11,24 +11,30 @@ import {ICurrency} from "../models/currency";
 export class ApiEffects {
     constructor(private apiService: ApiService,
                 private modelFactory: ModelFactory) {
+        Actions.Request.AllCountries.subject.subscribe(() => {
+            Actions.Store.RoutesRegistering.emit(true);
+            return this.apiService.getAllCountriesList()
+                .flatMap((value) => {
+                    return Observable.from(value);
+                }).subscribe((country: any) => {
+                    let newCountry: ICountry = this.modelFactory.createCountry(
+                        country.name,
+                        country.capital,
+                        country.population,
+                        country.region,
+                        country.currencies
+                    );
 
-        this.apiService.getAllCountriesList().flatMap((value) => {
-            return Observable.from(value)
-        }).subscribe((country: any) => {
+                    Actions.Store.AddCountry.emit(newCountry);
+                    Actions.Store.RegisterNewRoute.emit({path: country.name, data: {}});
+                }, () => {
 
-            let newCountry: ICountry = this.modelFactory.createCountry(
-                country.name,
-                country.capital,
-                country.population,
-                country.region,
-                country.currencies
-            );
-
-            Actions.Store.AddCountry.emit(newCountry);
-            Actions.Store.RegisterNewRoute.emit({path: country.name, data: {}});
+                }, () => {
+                    Actions.Store.RoutesRegistering.emit(false);
+                });
         });
 
-        Actions.MakeRequestForCurrencies.subject.flatMap((arrayOfCurrencies: string[]) => {
+        Actions.Request.CurrenciesForPLN.subject.flatMap((arrayOfCurrencies: string[]) => {
             if (arrayOfCurrencies && arrayOfCurrencies.length > 0) {
                 return Observable.from(arrayOfCurrencies)
             }

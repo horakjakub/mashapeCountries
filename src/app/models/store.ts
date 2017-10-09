@@ -15,7 +15,6 @@ export class Store<T> extends ReplaySubject<T> {
 
     registerReducer(reducer: IReducer) {
         this.reducers[reducer.action.name] = reducer;
-
         reducer.action.subject.subscribe((payload) => {
             this.next(reducer.reduce(this.state, payload))
         })

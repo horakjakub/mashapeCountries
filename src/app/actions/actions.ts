@@ -19,5 +19,8 @@ export const Actions = {
         AddCurrency: new Action<ICurrency>('')
     },
 
-    MakeRequestForCurrencies: new Action<string[]>('')
+    Request: {
+        CurrenciesForPLN: new Action<string[]>(''),
+        AllCountries: new Action<null>('')
+    }
 };

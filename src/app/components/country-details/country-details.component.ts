@@ -3,12 +3,14 @@ import {AppStore} from "../../store/app.store";
 import {IRoute, IRoutes} from "../../models/routes";
 import {ICountry} from "../../models/country";
 import {ICurrency} from "../../models/currency";
+import {Actions} from "../../actions/actions";
 
 @Component({
     selector: 'app-country-details',
     templateUrl: './country-details.component.html',
     styleUrls: ['./country-details.component.css']
 })
+
 export class CountryDetailsComponent implements OnInit {
     visible: boolean;
     countries: ICountry[];
@@ -18,13 +20,14 @@ export class CountryDetailsComponent implements OnInit {
 
     constructor(private appStore: AppStore) {
         this.appStore.countries.subscribe(this.setCountries.bind(this));
-
         this.appStore.routes
             .map((router: IRoutes) => router.currentRoute)
+            .distinctUntilChanged()
             .subscribe((currentRoute: IRoute) => {
                 this.selectedCountry = this.countries.find((country: ICountry) => country.name === currentRoute.path);
                 if (this.selectedCountry !== undefined) {
                     this.visible = true;
+                    Actions.Request.CurrenciesForPLN.emit(this.selectedCountry.currencies);
                 } else {
                     this.visible = false;
                 }
@@ -57,7 +60,11 @@ export class CountryDetailsComponent implements OnInit {
         return this.selectedCurrencies.find(currency => currency.from === currencyCode)
     }
 
-    ngOnInit() {
+    goBack() {
+        Actions.Store.ChangeCurrentRoute.emit('');
     }
 
+    ngOnInit() {
+
+    }
 }

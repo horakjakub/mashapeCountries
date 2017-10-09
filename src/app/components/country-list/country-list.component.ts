@@ -15,9 +15,9 @@ export class CountryListComponent implements OnInit {
     countries: ICountry[];
 
     constructor(private appStore: AppStore) {
-
         this.appStore.routes
             .map((router: IRoutes) => router.currentRoute)
+            .distinctUntilChanged()
             .subscribe((currentRoute: IRoute) => {
                 if (currentRoute.path === "") {
                     this.visible = true;
@@ -36,8 +36,8 @@ export class CountryListComponent implements OnInit {
 
     changeRoute(country) {
         Actions.Store.ChangeCurrentRoute.emit(country.name);
-        Actions.MakeRequestForCurrencies.emit(country.currencies);
     }
+
 
     ngOnInit() {
     }

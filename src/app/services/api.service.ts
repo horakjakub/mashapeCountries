@@ -30,7 +30,6 @@ export class ApiService {
             'X-Mashape-Key': token
         });
 
-        //[{"key":"X-Mashape-Key","value":"ra3f3Aa34SmshGG55GT4ofRUuyOtp1oYeOljsnAhDmp7rlVYlp","description":""}]
         let options = new RequestOptions({
             method: req.method, url: serverUrl + req.path,
             headers: headers, body: req.data ? JSON.stringify(req.data) : null

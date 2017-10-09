@@ -2,11 +2,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpModule} from "@angular/http";
-import {NavigationStart, Router, RouterModule} from "@angular/router";
+import {RouterModule} from "@angular/router";
 // ---------------- SERVICES  ------------------- //
 import {ApiService} from './services/api.service';
 import {AppStore} from "./store/app.store";
 import {ModelFactory} from "./services/model-data.factory"
+import {RouterService} from "./services/router.service";
 // ---------------- COMPONENTS  ------------------- //
 import {AppComponent} from './components/app.component';
 import {CountryDetailsComponent} from './components/country-details/country-details.component'
@@ -26,43 +27,23 @@ import {Actions} from "./actions/actions";
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule,
-        RouterModule.forRoot([
-            {path: "**", component: CountryListComponent}
-        ])
+        RouterModule.forRoot([{path: "**", component: AppComponent}])
     ],
     providers: [
         ApiService,
         AppStore,
         ApiEffects,
-        ModelFactory
+        ModelFactory,
+        RouterService
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-    countries: any;
-    currency: any;
 
+export class AppModule {
     constructor(private apiService: ApiService,
                 private appStore: AppStore,
-                private router: Router,
-                private apiEffects: ApiEffects) {
-        // this.apiService.getAllCountriesList().subscribe(this.setCountries.bind(this));
-        // this.apiService.getConvertSelectedCurrencyToPLN('USD').subscribe(this.setCurrency.bind(this));
-
-        // Actions.Store.RegisterNewRoute.emit({path: "", component: CountryListComponent })
-
-        // this.appStore.countries.subscribe(this.setCountriesCollection.bind(this));
-
-        this.router.events.filter((view) => view instanceof NavigationStart).subscribe((view: any) => {
-            Actions.Store.ChangeCurrentRoute.emit(view.url);
-        })
+                private apiEffects: ApiEffects,
+                private routerService: RouterService) {
+        Actions.Request.AllCountries.emit(null);
     }
-
-    // setCurrency(currency) {
-    //     this.currency = currency;
-    // }
-    //
-    // setCountriesCollection(countriesCollection) {
-    // }
 }
