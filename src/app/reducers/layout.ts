@@ -4,7 +4,7 @@ import {Actions} from '../actions/actions';
 
 export const initialState: ILayout = {
     actualViewURL: '',
-    countriesListVisible: false,
+    loaderVisible: false,
     countryDetailsVisible: false
 };
 
@@ -36,13 +36,13 @@ function countryDetailsVisible(state: ILayout, payload: boolean): ILayout {
 
 /* ----------- / COUNTRIES_LIST_VISIBLE / --------------*/
 
-export const COUNTRIES_LIST_VISIBLE: IReducer = {
-    action: Actions.Store.CountriesListVisible,
-    reduce: countriesListVisible
+export const LOADER_VISIBLE: IReducer = {
+    action: Actions.Store.LoaderVisible,
+    reduce: loaderVisible
 };
 
-function countriesListVisible(state: ILayout, payload: boolean): ILayout {
+function loaderVisible(state: ILayout, payload: boolean): ILayout {
     const newState: ILayout = Object.assign({}, state);
-    newState.countriesListVisible = payload;
+    newState.loaderVisible = payload;
     return newState;
 }

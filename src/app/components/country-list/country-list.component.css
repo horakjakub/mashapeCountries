@@ -1,0 +1,4 @@
+.country-list__component {
+    display: flex;
+    justify-content: center;
+}

@@ -1,6 +1,6 @@
 export interface ILayout {
     actualViewURL: string;
 
-    countriesListVisible: boolean;
+    loaderVisible: boolean;
     countryDetailsVisible: boolean;
 }

@@ -1,7 +1,26 @@
-<div *ngIf="visible">
-    <ul>
-        <li *ngFor="let country of countries" (click)="changeRoute(country)">
-            {{ country.name }}
-        </li>
-    </ul>
-</div>
+<section *ngIf="visible" class="country-list__component">
+    <table *ngIf="countries.length > 0" class="white-table__table">
+        <thead class="white-table__theader">
+        <th class="white-table__th-cell">Name</th>
+        <th class="white-table__th-cell">Region</th>
+        <th class="white-table__th-cell">Population</th>
+        <th class="white-table__th-cell">Capital</th>
+        </thead>
+        <tbody class="white-table__tbody">
+        <tr class="white-table__row" (click)="changeRoute(country)" *ngFor="let country of countries">
+            <td class="white-table__cell">
+                <strong>{{ country.name }}</strong>
+            </td>
+            <td class="white-table__cell">
+                {{ country.region }}
+            </td>
+            <td class="white-table__cell">
+                {{ country.capital }}
+            </td>
+            <td class="white-table__cell">
+                {{ country.population | number}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>

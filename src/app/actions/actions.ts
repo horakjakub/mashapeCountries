@@ -9,14 +9,15 @@ export const Actions = {
         AddCountry: new Action<ICountry>('[COUNTRIES] Add new country to collection'),
 
         ChangeSiteTo: new Action<string>('[LAYOUT] Change actual site'),
-        CountriesListVisible: new Action<boolean>('[LAYOUT] Country-List visible?'),
+        LoaderVisible: new Action<boolean>('[LAYOUT] Country-List visible?'),
         CountryDetailsVisible: new Action<boolean>('[LAYOUT] Country-Details visible?'),
 
         RegisterNewRoute: new Action<IRoute>(''),
         ChangeCurrentRoute: new Action<string>(''),
         RoutesRegistering: new Action<boolean>(''),
 
-        AddCurrency: new Action<ICurrency>('')
+        AddCurrency: new Action<ICurrency>(''),
+
     },
 
     Request: {

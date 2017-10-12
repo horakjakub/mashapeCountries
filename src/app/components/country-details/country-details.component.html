@@ -1,24 +1,241 @@
-<div *ngIf="visible">
-    <strong (click)="goBack()">BACK</strong>
-
-    <h4>{{ selectedCountry.name }}</h4>
-    <h5>{{ selectedCountry.region }}</h5>
-    <p>
-        <em> {{ selectedCountry.population }} </em>
-    </p>
-    <p>Currencies: </p>
-    <ul>
-        <li *ngFor="let currency of selectedCountry.currencies">
-            {{ currency }}
-        </li>
-    </ul>
-    <p *ngIf="!selectedCurrencies">
-        <em>LOADING...</em>
-    </p>
-    <ul *ngIf="selectedCurrencies">
-        <li *ngFor="let currency of selectedCurrencies">
-            <p>{{ currency.from }} {{ currency.from_amount }} </p>
-            <p>{{ currency.to }} {{ currency.to_amount }}</p>
-        </li>
-    </ul>
-</div>
+<section *ngIf="visible" class="country-details__component">
+    <header class="country-details__header">
+        <button class="country-details__header__button" (click)="goBack()">
+            BACK
+        </button>
+    </header>
+    <div class="white-card__container">
+        <header class="white-card__header">
+            <h4 class="white-card__title">
+                <strong>
+                    {{ selectedCountry.name }}
+                </strong>
+            </h4>
+            <h5 class="white-card__subtitle" *ngFor="let spelling of selectedCountry.altSpellings">
+                {{ spelling }}
+            </h5>
+        </header>
+        <content class="white-card__content">
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Capital:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.capital }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Population:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.population }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Region:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.region }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Subregion:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.subregion }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Languages:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let language of selectedCountry.languages">
+                    {{ language }}
+                </div>
+            </div>
+            <div *ngIf="!selectedCurrencies">
+                <div class="white-card__row" *ngFor="let currency of selectedCountry.currencies; index as i">
+                    <div class="white-card__unit">
+                        <strong>
+                            {{ i > 0 ? (i + 1) + " ": "" }}Currency:
+                        </strong>
+                    </div>
+                    <div class="white-card__unit">
+                        {{ currency }}
+                    </div>
+                    <div class="white-card__unit white-card__unit--loader">
+                        <app-loader-small></app-loader-small>
+                    </div>
+                </div>
+            </div>
+            <div class="white-card__row" *ngFor="let currency of selectedCurrencies; index as i">
+                <div class="white-card__unit">
+                    <strong>
+                        {{ i > 0 ? (i + 1) + " ": "" }}Currency:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ currency.from }}
+                </div>
+                <div class="white-card__unit" *ngIf="currency.supported">
+                    <strong>
+                        {{ i > 0 ? (i + 1) + " ": "" }}Currency in PLN:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngIf="currency.supported">
+                    {{ currency.to_amount | number }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Codes:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.alpha2Code }}
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.alpha3Code }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Borders:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let border of selectedCountry.borders">
+                    {{ border }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Area:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.area }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Lat, Lng:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let lat of selectedCountry.latlng">
+                    {{ lat }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Calling Codes:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let callingCode of selectedCountry.callingCodes">
+                    {{ callingCode }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Native name:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.nativeName }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Numeric code:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.numericCode }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Relevance:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.relevance }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Demonym:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.demonym }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Top Level Domains:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let domain of selectedCountry.topLevelDomain">
+                    {{ domain }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Timezones:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let timezone of selectedCountry.timezones">
+                    {{ timezone }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Calling code:
+                    </strong>
+                </div>
+                <div class="white-card__unit" *ngFor="let callingCode of selectedCountry.callingCodes">
+                    {{ callingCode }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Gini:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.gini }}
+                </div>
+                <div class="white-card__unit">
+                    <strong>
+                        Relevance:
+                    </strong>
+                </div>
+                <div class="white-card__unit">
+                    {{ selectedCountry.relevance }}
+                </div>
+            </div>
+            <div class="white-card__row">
+                <div class="white-card__unit">
+                    <strong>
+                        Translations:
+                    </strong>
+                </div>
+                <div class="white-card__long-unit" *ngFor="let key of selectedCountry.translations | keys">
+                    {{key}}:&nbsp;{{selectedCountry.translations[key]}}
+                </div>
+            </div>
+        </content>
+    </div>
+</section>

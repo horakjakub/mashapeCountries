@@ -1,1 +1,164 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+https://color.adobe.com/create/color-wheel/?base=2&rule=Triad&selected=2&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.6349965252682594,0.41560349434848026,0.7,1,0.863563105435743,0.5445078274619599,0.873033174867832,0.44450782746195994,1,0.435606261969568,0.8,0.658566071392471,0.3705518669342345,0.7,0.572129680428219&swatchOrder=0,1,2,3,4
+*/
+
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    font-size: 10px;
+    margin: 0;
+    background: #DF71FF;
+    width: 100%;
+    height: 100%;
+}
+
+/* ------------------- / WHITE-TABLE / ----------------------- */
+
+.white-table__table {
+    border-collapse: collapse;
+    margin: 2em;
+    -webkit-box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    background: #fff;
+}
+
+.white-table__th-cell {
+    font-size: 1.4em;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.4em 2em;
+}
+
+.white-table__row {
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.white-table__row:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.white-table__cell {
+    color: #595959;
+    padding: 1em 1.6em;
+    font-size: 1.8em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 668px) {
+    .white-table__table {
+        margin: 1em;
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 528px) {
+    .white-table__table {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    .white-table__table {
+        font-size: 0.6em;
+    }
+}
+
+/* ------------------- / WHITE-CARD / ----------------------- */
+
+.white-card__container {
+    border-collapse: collapse;
+    margin: 1.5em 2em;
+    -webkit-box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    box-shadow: 1px 2px 5px 5px rgba(0, 0, 0, 0.07);
+    background: #fff;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 1.7em;
+    padding: 1.6em;
+}
+
+.white-card__header, .white-card__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.white-card__unit, .white-card__long-unit {
+    padding: 1em 2em;
+    width: 4em;
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.white-card__unit strong {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.8em;
+}
+
+.white-card__unit--loader {
+    justify-content: center;
+}
+
+.white-card__unit, .white-card__long-unit {
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    transition: background 0.2s ease-in-out;
+}
+
+.white-card__unit:hover, .white-card__long-unit:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.white-card__title, .white-card__subtitle {
+    width: 4.5em;
+    padding: 0.6em 2.2em 1.2em 2.2em;
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.white-card__title strong {
+    font-size: 1.2em;
+}
+
+.white-card__header {
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.white-card__subtitle {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.white-card__long-unit {
+    width: 8em;
+}
+
+@media screen and (max-width: 668px) {
+    .white-card__container {
+        margin: 1em;
+        font-size: 1.5em;
+        padding: 1.3em;
+    }
+}
+
+@media screen and (max-width: 528px) {
+    .white-card__container {
+        font-size: 1.3em;
+        padding: 1.1em;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    .white-card__container {
+        padding: 0.9em 0.6em;
+    }
+}
+
+

@@ -15,6 +15,10 @@ import {CountryListComponent} from './components/country-list/country-list.compo
 // ---------------- EFFECTS  ------------------- //
 import {ApiEffects} from './effects/api.effects';
 import {Actions} from "./actions/actions";
+import {LoaderFullWidthComponent} from './components/loader-full-width/loader-full-width.component';
+// ---------------- PIPES  ------------------- //
+import {KeysPipe} from './pipes/keys.pipe';
+import {LoaderSmallComponent} from './components/loader-small/loader-small.component';
 
 // ---------------- ACTION  ------------------- //
 
@@ -22,12 +26,15 @@ import {Actions} from "./actions/actions";
     declarations: [
         AppComponent,
         CountryDetailsComponent,
-        CountryListComponent
+        CountryListComponent,
+        LoaderFullWidthComponent,
+        KeysPipe,
+        LoaderSmallComponent,
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot([{path: "**", component: AppComponent}])
+        RouterModule.forRoot([{path: "**", component: AppComponent}]),
     ],
     providers: [
         ApiService,
@@ -45,5 +52,6 @@ export class AppModule {
                 private apiEffects: ApiEffects,
                 private routerService: RouterService) {
         Actions.Request.AllCountries.emit(null);
+        Actions.Store.LoaderVisible.emit(true);
     }
 }

@@ -22,7 +22,24 @@ export class ApiEffects {
                         country.capital,
                         country.population,
                         country.region,
-                        country.currencies
+                        country.currencies,
+                        country.topLevelDomain,
+                        country.alpha2Code,
+                        country.alpha3Code,
+                        country.callingCodes,
+                        country.altSpellings,
+                        country.subregion,
+                        country.latlng,
+                        country.demonym,
+                        country.area,
+                        country.gini,
+                        country.timezones,
+                        country.borders,
+                        country.nativeName,
+                        country.numericCode,
+                        country.languages,
+                        country.translations,
+                        country.relevance
                     );
 
                     Actions.Store.AddCountry.emit(newCountry);
@@ -42,15 +59,8 @@ export class ApiEffects {
             return this.apiService.getConvertSelectedCurrencyToPLN(currencyCode);
         }).subscribe((currency) => {
             let newCurrency: ICurrency;
+
             if (currency.error) {
-                newCurrency = this.modelFactory.createCurrency(
-                    currency.from,
-                    currency.from_amount,
-                    currency.to,
-                    currency.to_amount,
-                    true
-                );
-            } else {
                 newCurrency = this.modelFactory.createCurrency(
                     currency.from,
                     currency.from_amount,
@@ -58,7 +68,16 @@ export class ApiEffects {
                     currency.to_amount,
                     false
                 );
+            } else {
+                newCurrency = this.modelFactory.createCurrency(
+                    currency.from,
+                    currency.from_amount,
+                    currency.to,
+                    currency.to_amount,
+                    true
+                );
             }
+
             Actions.Store.AddCurrency.emit(newCurrency);
         })
     }

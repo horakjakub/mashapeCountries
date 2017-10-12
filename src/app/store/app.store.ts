@@ -37,7 +37,7 @@ export class AppStore implements IAppState {
         this.currencies.registerReducer(CurrencyReducer.ADD_CURRENCY);
 
         this.layout.registerReducer(LayoutReducers.CHANGE_ACTUAL_SITE);
-        this.layout.registerReducer(LayoutReducers.COUNTRIES_LIST_VISIBLE);
+        this.layout.registerReducer(LayoutReducers.LOADER_VISIBLE);
         this.layout.registerReducer(LayoutReducers.COUNTRY_DETAILS_VISIBLE);
 
         this.routes.registerReducer(RouterReducer.CHANGE_CURRENT_ROUTE);

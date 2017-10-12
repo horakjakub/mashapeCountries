@@ -12,7 +12,7 @@ import {Actions} from "../../actions/actions";
 })
 export class CountryListComponent implements OnInit {
     visible: boolean;
-    countries: ICountry[];
+    countries: ICountry[] = [];
 
     constructor(private appStore: AppStore) {
         this.appStore.routes
@@ -32,6 +32,9 @@ export class CountryListComponent implements OnInit {
 
     setCountries(countries: ICountry[]) {
         this.countries = countries;
+        if (this.countries.length > 0) {
+            Actions.Store.LoaderVisible.emit(false);
+        }
     }
 
     changeRoute(country) {

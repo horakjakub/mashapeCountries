@@ -8,7 +8,7 @@ import {Actions} from "../../actions/actions";
 @Component({
     selector: 'app-country-details',
     templateUrl: './country-details.component.html',
-    styleUrls: ['./country-details.component.css']
+    styleUrls: ['./country-details.component.css'],
 })
 
 export class CountryDetailsComponent implements OnInit {
@@ -24,10 +24,12 @@ export class CountryDetailsComponent implements OnInit {
             .map((router: IRoutes) => router.currentRoute)
             .distinctUntilChanged()
             .subscribe((currentRoute: IRoute) => {
+                this.selectedCurrencies = undefined;
                 this.selectedCountry = this.countries.find((country: ICountry) => country.name === currentRoute.path);
                 if (this.selectedCountry !== undefined) {
                     this.visible = true;
                     Actions.Request.CurrenciesForPLN.emit(this.selectedCountry.currencies);
+                    Actions.Store.LoaderVisible.emit(false);
                 } else {
                     this.visible = false;
                 }
@@ -56,8 +58,17 @@ export class CountryDetailsComponent implements OnInit {
             });
     }
 
+
     showCurrency(currencyCode) {
         return this.selectedCurrencies.find(currency => currency.from === currencyCode)
+    }
+
+    showTranslations(translations): string {
+        let allTranslations: string = '';
+        for (let lang in translations) {
+            allTranslations = allTranslations + ": " + lang + " " + translations[lang] + ", "
+        }
+        return allTranslations
     }
 
     goBack() {
@@ -65,6 +76,7 @@ export class CountryDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 }
+
+
