@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStore} from "../../store/app.store";
 import {IRoute, IRoutes} from "../../models/routes";
-import {ICountry} from "../../models/country";
-import {ICurrency} from "../../models/currency";
+import {ICountry} from "../../models/data/country";
+import {ICurrency} from "../../models/data/currency";
 import {Actions} from "../../actions/actions";
 
 @Component({

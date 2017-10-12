@@ -12,13 +12,14 @@ import {RouterService} from "./services/router.service";
 import {AppComponent} from './components/app.component';
 import {CountryDetailsComponent} from './components/country-details/country-details.component'
 import {CountryListComponent} from './components/country-list/country-list.component';
+import {LoaderSmallComponent} from './components/loader-small/loader-small.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {LoaderFullWidthComponent} from './components/loader-full-width/loader-full-width.component';
 // ---------------- EFFECTS  ------------------- //
 import {ApiEffects} from './effects/api.effects';
 import {Actions} from "./actions/actions";
-import {LoaderFullWidthComponent} from './components/loader-full-width/loader-full-width.component';
 // ---------------- PIPES  ------------------- //
 import {KeysPipe} from './pipes/keys.pipe';
-import {LoaderSmallComponent} from './components/loader-small/loader-small.component';
 
 // ---------------- ACTION  ------------------- //
 
@@ -30,6 +31,7 @@ import {LoaderSmallComponent} from './components/loader-small/loader-small.compo
         LoaderFullWidthComponent,
         KeysPipe,
         LoaderSmallComponent,
+        AlertComponent,
     ],
     imports: [
         BrowserModule,

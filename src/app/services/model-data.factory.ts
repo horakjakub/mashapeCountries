@@ -1,5 +1,5 @@
-import {ICountry} from "../models/country";
-import {ICurrency} from "../models/currency";
+import {ICountry} from "../models/data/country";
+import {ICurrency} from "../models/data/currency";
 
 export class ModelFactory {
     createCountry(name?: string,

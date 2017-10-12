@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Store} from "../models/store";
 
-import {ICountry} from "../models/country";
+import {ICountry} from "../models/data/country";
 import {ILayout} from "../models/layout";
 import {IRoutes} from "../models/routes";
-import {ICurrency} from "../models/currency";
+import {ICurrency} from "../models/data/currency";
 
 import * as CountriesReducers from "../reducers/countries";
 import * as LayoutReducers from "../reducers/layout";
@@ -36,9 +36,9 @@ export class AppStore implements IAppState {
         this.countries.registerReducer(CountriesReducers.ADD_COUNTRY);
         this.currencies.registerReducer(CurrencyReducer.ADD_CURRENCY);
 
-        this.layout.registerReducer(LayoutReducers.CHANGE_ACTUAL_SITE);
+        this.layout.registerReducer(LayoutReducers.SHOW_ALERT);
+        this.layout.registerReducer(LayoutReducers.ALERT_VISIBLE);
         this.layout.registerReducer(LayoutReducers.LOADER_VISIBLE);
-        this.layout.registerReducer(LayoutReducers.COUNTRY_DETAILS_VISIBLE);
 
         this.routes.registerReducer(RouterReducer.CHANGE_CURRENT_ROUTE);
         this.routes.registerReducer(RouterReducer.ROUTES_REGISTERING);

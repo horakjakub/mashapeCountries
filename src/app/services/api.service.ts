@@ -46,16 +46,8 @@ export class ApiService {
                 }
             })
             .catch((errorResponse: Response) => {
-                let result: any;
-
-                result = {Error: errorResponse.status, Errors: ""};
-                try {
-                    result = errorResponse.json();
-                    result
-                } catch (e) {
-                    result = {Errors: [`Server error: ${errorResponse.text()}`]}
-                }
-                return Observable.throw(result);
+                let requestUrl: string = serverUrl + req.path;
+                return Observable.throw({status: errorResponse.statusText, url: requestUrl});
             });
     }
 }

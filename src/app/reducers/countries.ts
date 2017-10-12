@@ -1,7 +1,6 @@
-import {ICountry} from "../models/country";
+import {ICountry} from "../models/data/country";
 import {IReducer} from "../models/reducer"
 import {Actions} from '../actions/actions';
-
 
 export const ADD_COUNTRY: IReducer = {
     action: Actions.Store.AddCountry,

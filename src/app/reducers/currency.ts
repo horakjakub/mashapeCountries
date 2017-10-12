@@ -1,6 +1,6 @@
 import {IReducer} from "../models/reducer"
 import {Actions} from '../actions/actions';
-import {ICurrency} from "../models/currency";
+import {ICurrency} from "../models/data/currency";
 
 export const ADD_CURRENCY: IReducer = {
     action: Actions.Store.AddCurrency,

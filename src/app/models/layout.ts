@@ -1,6 +1,6 @@
-export interface ILayout {
-    actualViewURL: string;
+import {IAlert} from "./alerts"
 
+export interface ILayout {
     loaderVisible: boolean;
-    countryDetailsVisible: boolean;
+    alert: IAlert;
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStore} from "../../store/app.store";
-// import {IRouter, IRoute} from "../../models/router";
-import {ICountry} from "../../models/country";
+import {ICountry} from "../../models/data/country";
 import {IRoute, IRoutes} from "../../models/routes";
 import {Actions} from "../../actions/actions";
 
@@ -40,7 +39,6 @@ export class CountryListComponent implements OnInit {
     changeRoute(country) {
         Actions.Store.ChangeCurrentRoute.emit(country.name);
     }
-
 
     ngOnInit() {
     }

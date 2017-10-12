@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from "../services/api.service";
 import {Actions} from "../actions/actions";
-import {ICountry} from "../models/country";
+import {ICountry} from "../models/data/country";
 import {ModelFactory} from "../services/model-data.factory";
-import {ICurrency} from "../models/currency";
+import {ICurrency} from "../models/data/currency";
 
 @Injectable()
 
 export class ApiEffects {
     constructor(private apiService: ApiService,
                 private modelFactory: ModelFactory) {
+
         Actions.Request.AllCountries.subject.subscribe(() => {
             Actions.Store.RoutesRegistering.emit(true);
             return this.apiService.getAllCountriesList()
@@ -44,8 +45,8 @@ export class ApiEffects {
 
                     Actions.Store.AddCountry.emit(newCountry);
                     Actions.Store.RegisterNewRoute.emit({path: country.name, data: {}});
-                }, () => {
-
+                }, (err) => {
+                    this.showErrorAlert('Countries request error - status: "' + err.status + '"');
                 }, () => {
                     Actions.Store.RoutesRegistering.emit(false);
                 });
@@ -57,6 +58,7 @@ export class ApiEffects {
             }
         }).flatMap((currencyCode: string) => {
             return this.apiService.getConvertSelectedCurrencyToPLN(currencyCode);
+
         }).subscribe((currency) => {
             let newCurrency: ICurrency;
 
@@ -77,8 +79,14 @@ export class ApiEffects {
                     true
                 );
             }
-
             Actions.Store.AddCurrency.emit(newCurrency);
+
+        }, (err) => {
+            this.showErrorAlert('Currency convert request error - status: "' + err.status + '"');
         })
+    }
+
+    showErrorAlert(errorMessage: string): void {
+        Actions.Store.ShowAlert.emit({header: 'Error', message: errorMessage, visible: true});
     }
 }

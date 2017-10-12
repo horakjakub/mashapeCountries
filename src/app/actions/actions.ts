@@ -1,27 +1,27 @@
 import {Action} from "../models/action";
-import {ICountry} from "../models/country";
-import {ICurrency} from "../models/currency";
+import {ICountry} from "../models/data/country";
+import {ICurrency} from "../models/data/currency";
 import {IRoute} from "../models/routes";
+import {IAlert} from "../models/alerts";
 
 
 export const Actions = {
     Store: {
-        AddCountry: new Action<ICountry>('[COUNTRIES] Add new country to collection'),
+        AddCountry: new Action<ICountry>('[COUNTRIES] Add new country to countries collection'),
 
-        ChangeSiteTo: new Action<string>('[LAYOUT] Change actual site'),
-        LoaderVisible: new Action<boolean>('[LAYOUT] Country-List visible?'),
-        CountryDetailsVisible: new Action<boolean>('[LAYOUT] Country-Details visible?'),
+        LoaderVisible: new Action<boolean>('[LAYOUT] Loader visible?'),
+        ShowAlert: new Action<IAlert>('[LAYOUT] Show Alert with some message'),
+        AlertVisible: new Action<boolean>('[LAYOUT] Alert visible?'),
 
-        RegisterNewRoute: new Action<IRoute>(''),
-        ChangeCurrentRoute: new Action<string>(''),
-        RoutesRegistering: new Action<boolean>(''),
+        RegisterNewRoute: new Action<IRoute>('[ROUTES] New routes registered'),
+        ChangeCurrentRoute: new Action<string>('[ROUTES] Change current Route'),
+        RoutesRegistering: new Action<boolean>('[ROUTES] Routes registering?'),
 
-        AddCurrency: new Action<ICurrency>(''),
-
+        AddCurrency: new Action<ICurrency>('[CURRENCIES] Add new currency to currencies collection'),
     },
 
     Request: {
-        CurrenciesForPLN: new Action<string[]>(''),
-        AllCountries: new Action<null>('')
+        CurrenciesForPLN: new Action<string[]>('[REQUEST] Make requests for currencies convert'),
+        AllCountries: new Action<null>('[REQUEST] Make requests for all countries list')
     }
 };

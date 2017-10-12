@@ -1,40 +1,44 @@
 import {ILayout} from "../models/layout"
 import {IReducer} from "../models/reducer";
 import {Actions} from '../actions/actions';
+import {IAlert} from "../models/alerts";
 
 export const initialState: ILayout = {
-    actualViewURL: '',
     loaderVisible: false,
-    countryDetailsVisible: false
+    alert: {
+        visible: false,
+        message: '',
+        header: ''
+    }
 };
 
-// -------------  change site  ------------- //
-
-export const CHANGE_ACTUAL_SITE: IReducer = {
-    action: Actions.Store.ChangeSiteTo,
-    reduce: changeCurrentSiteForNew
+/* ----------- / SHOW_ALERT / --------------*/
+export const SHOW_ALERT: IReducer = {
+    action: Actions.Store.ShowAlert,
+    reduce: showAlert
 };
 
-function changeCurrentSiteForNew(state: ILayout, payload: string): ILayout {
+function showAlert(state: ILayout, payload: IAlert): ILayout {
     const newState: ILayout = Object.assign({}, state);
-    newState.actualViewURL = payload;
+    newState.alert.visible = payload.visible;
+    newState.alert.message = payload.message;
+    newState.alert.header = payload.header;
     return newState;
 }
 
-/* ----------- / COUNTRY_DETAILS_VISIBLE / --------------*/
-
-export const COUNTRY_DETAILS_VISIBLE: IReducer = {
-    action: Actions.Store.CountryDetailsVisible,
-    reduce: countryDetailsVisible
+/* ----------- / ALERT_VISIBLE / --------------*/
+export const ALERT_VISIBLE: IReducer = {
+    action: Actions.Store.AlertVisible,
+    reduce: AlertVisible
 };
 
-function countryDetailsVisible(state: ILayout, payload: boolean): ILayout {
+function AlertVisible(state: ILayout, payload: boolean): ILayout {
     const newState: ILayout = Object.assign({}, state);
-    newState.countryDetailsVisible = payload;
+    newState.alert.visible = payload;
     return newState;
 }
 
-/* ----------- / COUNTRIES_LIST_VISIBLE / --------------*/
+/* ----------- / LOADER_VISIBLE / --------------*/
 
 export const LOADER_VISIBLE: IReducer = {
     action: Actions.Store.LoaderVisible,
