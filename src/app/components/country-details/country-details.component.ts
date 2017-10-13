@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStore} from "../../store/app.store";
-import {IRoute, IRoutes} from "../../models/routes";
+import {IRoute, IRoutes} from "../../models/stores/routes";
 import {ICountry} from "../../models/data/country";
 import {ICurrency} from "../../models/data/currency";
 import {Actions} from "../../actions/actions";
@@ -16,7 +16,7 @@ export class CountryDetailsComponent implements OnInit {
     countries: ICountry[];
     allCurrencies: ICurrency[];
     selectedCountry: ICountry;
-    selectedCurrencies: any;
+    selectedCurrencies: ICurrency[];
 
     constructor(private appStore: AppStore) {
         this.appStore.countries.subscribe(this.setCountries.bind(this));
@@ -30,6 +30,10 @@ export class CountryDetailsComponent implements OnInit {
                     this.visible = true;
                     Actions.Request.CurrenciesForPLN.emit(this.selectedCountry.currencies);
                     Actions.Store.LoaderVisible.emit(false);
+
+                    if (this.allCurrencies !== undefined) {
+                        this.selectConvertedCurrencies(this.selectedCountry.currencies);
+                    }
                 } else {
                     this.visible = false;
                 }
@@ -38,40 +42,28 @@ export class CountryDetailsComponent implements OnInit {
         this.appStore.currencies.subscribe(this.setCurrencies.bind(this));
     }
 
-    setCountries(countries: ICountry[]) {
+    setCountries(countries: ICountry[]): void {
         this.countries = countries;
     }
 
-    setCurrencies(currencies: ICurrency[]) {
+
+    setCurrencies(currencies: ICurrency[]): void {
         this.allCurrencies = currencies;
         if (this.selectedCountry) {
-            this.selectCurrency(this.selectedCountry.currencies)
+            this.selectConvertedCurrencies(this.selectedCountry.currencies)
         }
     }
 
-    selectCurrency(newCurrencies: string[]) {
+    selectConvertedCurrencies(newCurrencies: string[]): void {
         this.selectedCurrencies = newCurrencies
             .map((newCurrency) => {
                 return this.allCurrencies.find((curr) => {
                     return curr.from === newCurrency
                 })
-            });
+            }).filter(selectedCurrency => selectedCurrency !== undefined);
     }
 
-
-    showCurrency(currencyCode) {
-        return this.selectedCurrencies.find(currency => currency.from === currencyCode)
-    }
-
-    showTranslations(translations): string {
-        let allTranslations: string = '';
-        for (let lang in translations) {
-            allTranslations = allTranslations + ": " + lang + " " + translations[lang] + ", "
-        }
-        return allTranslations
-    }
-
-    goBack() {
+    goBack(): void {
         Actions.Store.ChangeCurrentRoute.emit('');
     }
 

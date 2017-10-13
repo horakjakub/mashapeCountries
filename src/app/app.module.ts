@@ -17,11 +17,10 @@ import {AlertComponent} from './components/alert/alert.component';
 import {LoaderFullWidthComponent} from './components/loader-full-width/loader-full-width.component';
 // ---------------- EFFECTS  ------------------- //
 import {ApiEffects} from './effects/api.effects';
-import {Actions} from "./actions/actions";
 // ---------------- PIPES  ------------------- //
 import {KeysPipe} from './pipes/keys.pipe';
-
-// ---------------- ACTION  ------------------- //
+// ---------------- ACTIONS  ------------------- //
+import {Actions} from "./actions/actions";
 
 @NgModule({
     declarations: [

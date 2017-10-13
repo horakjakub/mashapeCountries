@@ -1,4 +1,4 @@
-import {IReducer} from "../models/reducer"
+import {IReducer} from "../models/stores/reducer"
 import {Actions} from '../actions/actions';
 import {ICurrency} from "../models/data/currency";
 

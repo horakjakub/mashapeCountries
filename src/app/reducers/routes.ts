@@ -1,5 +1,5 @@
-import {IRoute, IRoutes} from "../models/routes";
-import {IReducer} from "../models/reducer";
+import {IRoute, IRoutes} from "../models/stores/routes";
+import {IReducer} from "../models/stores/reducer";
 import {Actions} from '../actions/actions';
 
 export const initialState: IRoutes = {

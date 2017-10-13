@@ -1,9 +1,8 @@
 import {Action} from "../models/action";
 import {ICountry} from "../models/data/country";
 import {ICurrency} from "../models/data/currency";
-import {IRoute} from "../models/routes";
-import {IAlert} from "../models/alerts";
-
+import {IRoute} from "../models/stores/routes";
+import {IAlert} from "../models/stores/alerts";
 
 export const Actions = {
     Store: {

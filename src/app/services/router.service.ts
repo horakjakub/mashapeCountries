@@ -3,7 +3,7 @@ import {Location} from "@angular/common";
 import {NavigationStart, Router} from "@angular/router"
 import {Actions} from "../actions/actions";
 import {AppStore} from "../store/app.store";
-import {IRoute, IRoutes} from "../models/routes";
+import {IRoute, IRoutes} from "../models/stores/routes";
 
 @Injectable()
 
@@ -14,7 +14,7 @@ export class RouterService {
 
     constructor(private router: Router,
                 private appStore: AppStore,
-                private location: Location,) {
+                private location: Location) {
         this.appStore.routes
             .map((routes: IRoutes) => routes.loading)
             .distinctUntilChanged()
@@ -68,7 +68,7 @@ export class RouterService {
         })
     }
 
-    isRegisteredRouteForThisUrl(path: string): boolean {
+    private isRegisteredRouteForThisUrl(path: string): boolean {
         if (this.registeredRoutes.find((route) => route.path === path)) {
             return true;
         } else {

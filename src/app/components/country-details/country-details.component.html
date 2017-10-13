@@ -60,7 +60,7 @@
                     {{ language }}
                 </div>
             </div>
-            <div *ngIf="!selectedCurrencies">
+            <div *ngIf="!selectedCurrencies || selectedCurrencies.length === 0">
                 <div class="white-card__row" *ngFor="let currency of selectedCountry.currencies; index as i">
                     <div class="white-card__unit">
                         <strong>
@@ -84,13 +84,16 @@
                 <div class="white-card__unit">
                     {{ currency.from }}
                 </div>
-                <div class="white-card__unit" *ngIf="currency.supported">
+                <div class="white-card__unit">
                     <strong>
                         {{ i > 0 ? (i + 1) + " ": "" }}Currency in PLN:
                     </strong>
                 </div>
                 <div class="white-card__unit" *ngIf="currency.supported">
                     {{ currency.to_amount | number }}
+                </div>
+                <div class="white-card__unit" *ngIf="!currency.supported">
+                    Not supported
                 </div>
             </div>
             <div class="white-card__row">

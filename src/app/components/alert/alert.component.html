@@ -1,0 +1,13 @@
+<section class="alert__background" *ngIf="visible" (click)="hideAlert()">
+    <dialog class="alert__container">
+        <header class="alert__header">
+            {{ header }}
+        </header>
+        <div class="alert__content">
+            {{ message }}
+        </div>
+        <footer class="alert__footer">
+            <button class="btn alert__btn" (click)="hideAlert()">OK</button>
+        </footer>
+    </dialog>
+</section>

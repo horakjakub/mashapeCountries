@@ -1,5 +1,5 @@
 import {ICountry} from "../models/data/country";
-import {IReducer} from "../models/reducer"
+import {IReducer} from "../models/stores/reducer"
 import {Actions} from '../actions/actions';
 
 export const ADD_COUNTRY: IReducer = {

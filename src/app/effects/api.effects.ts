@@ -52,41 +52,79 @@ export class ApiEffects {
                 });
         });
 
+        // effect below was had to be commented because API from server "https://currencyconverter.p.mashape.com"
+        // stopped sending responds
+
+        // Actions.Request.CurrenciesForPLN.subject.flatMap((arrayOfCurrencies: string[]) => {
+        //     if (arrayOfCurrencies && arrayOfCurrencies.length > 0) {
+        //         return Observable.from(arrayOfCurrencies)
+        //     }
+        // }).flatMap((currencyCode: string) => {
+        //     return this.apiService.getConvertSelectedCurrencyToPLN(currencyCode);
+        // }).subscribe((currency) => {
+        // let newCurrency: ICurrency;
+        //
+        // if (currency.error) {
+        //     newCurrency = this.modelFactory.createCurrency(
+        //         currency.from,
+        //         currency.from_amount,
+        //         currency.to,
+        //         currency.to_amount,
+        //         false
+        //     );
+        // } else {
+        //     newCurrency = this.modelFactory.createCurrency(
+        //         currency.from,
+        //         currency.from_amount,
+        //         currency.to,
+        //         currency.to_amount,
+        //         true
+        //     );
+        // }
+        // Actions.Store.AddCurrency.emit(newCurrency);
+
+        // }, (err) => {
+        //     this.showErrorAlert('Currency convert request error - status: "' + err.status + '"');
+        // })
+
+        // method below was added and used because API from server "https://currencyconverter.p.mashape.com"
+        // stopped sending responds
+
         Actions.Request.CurrenciesForPLN.subject.flatMap((arrayOfCurrencies: string[]) => {
             if (arrayOfCurrencies && arrayOfCurrencies.length > 0) {
                 return Observable.from(arrayOfCurrencies)
             }
         }).flatMap((currencyCode: string) => {
-            return this.apiService.getConvertSelectedCurrencyToPLN(currencyCode);
-
-        }).subscribe((currency) => {
+            return this.apiService.getConvertSelectedCurrencyToPLN2(currencyCode);
+        }).subscribe((currencyData) => {
             let newCurrency: ICurrency;
-
-            if (currency.error) {
+            if (currencyData.val !== 0) {
                 newCurrency = this.modelFactory.createCurrency(
-                    currency.from,
-                    currency.from_amount,
-                    currency.to,
-                    currency.to_amount,
-                    false
+                    currencyData.code,
+                    1,
+                    'PLN',
+                    currencyData.val,
+                    true
                 );
             } else {
                 newCurrency = this.modelFactory.createCurrency(
-                    currency.from,
-                    currency.from_amount,
-                    currency.to,
-                    currency.to_amount,
-                    true
+                    currencyData.code,
+                    1,
+                    'PLN',
+                    currencyData.val,
+                    false
                 );
             }
-            Actions.Store.AddCurrency.emit(newCurrency);
 
+
+            Actions.Store.AddCurrency.emit(newCurrency);
         }, (err) => {
             this.showErrorAlert('Currency convert request error - status: "' + err.status + '"');
         })
     }
 
-    showErrorAlert(errorMessage: string): void {
+    private showErrorAlert(errorMessage: string): void {
         Actions.Store.ShowAlert.emit({header: 'Error', message: errorMessage, visible: true});
     }
+
 }

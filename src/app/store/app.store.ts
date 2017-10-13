@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Store} from "../models/store";
+import {Store} from "../models/stores/store";
 
 import {ICountry} from "../models/data/country";
-import {ILayout} from "../models/layout";
-import {IRoutes} from "../models/routes";
+import {ILayout} from "../models/stores/layout";
+import {IRoutes} from "../models/stores/routes";
 import {ICurrency} from "../models/data/currency";
 
 import * as CountriesReducers from "../reducers/countries";
@@ -11,7 +11,7 @@ import * as LayoutReducers from "../reducers/layout";
 import * as RouterReducer from "../reducers/routes";
 import * as CurrencyReducer from "../reducers/currency";
 
-export interface IAppState {
+interface IAppState {
     countries: Store<ICountry[]>;
     layout: Store<ILayout>;
     routes: Store<IRoutes>;
@@ -32,7 +32,7 @@ export class AppStore implements IAppState {
 
     // -------------- reducers registration -------------- //
 
-    reducersRegistration() {
+    private reducersRegistration(): void {
         this.countries.registerReducer(CountriesReducers.ADD_COUNTRY);
         this.currencies.registerReducer(CurrencyReducer.ADD_CURRENCY);
 

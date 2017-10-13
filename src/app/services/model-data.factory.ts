@@ -26,28 +26,28 @@ export class ModelFactory {
                   relevance?: number): ICountry {
         let newCountry: any = {};
 
-        newCountry.name = name || undefined;
-        newCountry.capital = capital || undefined;
-        newCountry.population = population || undefined;
-        newCountry.region = region || undefined;
-        newCountry.currencies = currencies || undefined;
-        newCountry.topLevelDomain = topLevelDomain || undefined;
-        newCountry.alpha2Code = alpha2Code || undefined;
-        newCountry.alpha3Code = alpha3Code || undefined;
-        newCountry.callingCodes = callingCodes || undefined;
-        newCountry.altSpellings = altSpellings || undefined;
-        newCountry.subregion = subregion || undefined;
-        newCountry.latlng = latlng || undefined;
-        newCountry.demonym = demonym || undefined;
-        newCountry.area = area || undefined;
-        newCountry.gini = gini || undefined;
-        newCountry.timezones = timezones || undefined;
-        newCountry.borders = borders || undefined;
-        newCountry.nativeName = nativeName || undefined;
-        newCountry.numericCode = numericCode || undefined;
-        newCountry.languages = languages || undefined;
-        newCountry.translations = translations || undefined;
-        newCountry.relevance = relevance || undefined;
+        newCountry.name = name;
+        newCountry.capital = capital;
+        newCountry.population = population;
+        newCountry.region = region;
+        newCountry.currencies = currencies;
+        newCountry.topLevelDomain = topLevelDomain;
+        newCountry.alpha2Code = alpha2Code;
+        newCountry.alpha3Code = alpha3Code;
+        newCountry.callingCodes = callingCodes;
+        newCountry.altSpellings = altSpellings;
+        newCountry.subregion = subregion;
+        newCountry.latlng = latlng;
+        newCountry.demonym = demonym;
+        newCountry.area = area;
+        newCountry.gini = gini;
+        newCountry.timezones = timezones;
+        newCountry.borders = borders;
+        newCountry.nativeName = nativeName;
+        newCountry.numericCode = numericCode;
+        newCountry.languages = languages;
+        newCountry.translations = translations;
+        newCountry.relevance = relevance;
 
         return newCountry;
     }
@@ -59,11 +59,11 @@ export class ModelFactory {
                    supported?: boolean): ICurrency {
         let newCurrency: any = {};
 
-        newCurrency.from = from || undefined;
-        newCurrency.from_amount = from_amount || undefined;
-        newCurrency.to = to || undefined;
-        newCurrency.to_amount = to_amount || undefined;
-        newCurrency.supported = supported || undefined;
+        newCurrency.from = from;
+        newCurrency.from_amount = from_amount;
+        newCurrency.to = to;
+        newCurrency.to_amount = to_amount;
+        newCurrency.supported = supported;
 
         return newCurrency;
     }

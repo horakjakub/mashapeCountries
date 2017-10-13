@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStore} from "../../store/app.store";
 import {ICountry} from "../../models/data/country";
-import {IRoute, IRoutes} from "../../models/routes";
+import {IRoute, IRoutes} from "../../models/stores/routes";
 import {Actions} from "../../actions/actions";
 
 @Component({
@@ -29,14 +29,14 @@ export class CountryListComponent implements OnInit {
     }
 
 
-    setCountries(countries: ICountry[]) {
+    setCountries(countries: ICountry[]): void {
         this.countries = countries;
         if (this.countries.length > 0) {
             Actions.Store.LoaderVisible.emit(false);
         }
     }
 
-    changeRoute(country) {
+    changeRoute(country): void {
         Actions.Store.ChangeCurrentRoute.emit(country.name);
     }
 

@@ -1,7 +1,7 @@
-import {ILayout} from "../models/layout"
-import {IReducer} from "../models/reducer";
+import {ILayout} from "../models/stores/layout"
+import {IReducer} from "../models/stores/reducer";
 import {Actions} from '../actions/actions';
-import {IAlert} from "../models/alerts";
+import {IAlert} from "../models/stores/alerts";
 
 export const initialState: ILayout = {
     loaderVisible: false,

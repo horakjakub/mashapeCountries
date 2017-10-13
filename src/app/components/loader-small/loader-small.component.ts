@@ -6,11 +6,9 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./loader-small.component.css']
 })
 export class LoaderSmallComponent implements OnInit {
-
     constructor() {
     }
 
     ngOnInit() {
     }
-
 }

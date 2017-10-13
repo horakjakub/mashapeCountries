@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStore} from "../../store/app.store";
-import {ILayout} from "../../models/layout";
+import {ILayout} from "../../models/stores/layout";
 
 @Component({
     selector: 'app-loader-full-width',

@@ -1,6 +1,5 @@
 import {ReplaySubject} from 'rxjs';
 
-// simple action class definition
 export class Action<T> {
     public subject: ReplaySubject<T>;
     name: string;

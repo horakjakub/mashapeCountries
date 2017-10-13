@@ -1,4 +1,4 @@
-import {Action} from "./action";
+import {Action} from "../action";
 
 export interface IReducer {
     action: Action<any>;
